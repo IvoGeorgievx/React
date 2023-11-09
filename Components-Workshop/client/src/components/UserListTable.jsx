@@ -6,6 +6,7 @@ import CreateUserModal from "./CreateUserModal";
 export default function UserListTable() {
 	const [users, setUsers] = useState([]);
 	const [showCreate, setShowCreate] = useState(false);
+	const [showInfo, setShowInfo] = useState(false);
 	useEffect(() => {
 		userService.getAll().then((res) => setUsers(res));
 	}, []);
@@ -18,9 +19,33 @@ export default function UserListTable() {
 		setShowCreate(false);
 	};
 
+	const userCreateHandler = async (e) => {
+		e.preventDefault();
+
+		const formData = Object.fromEntries(new FormData(e.currentTarget));
+
+		const newUser = await userService.create(formData);
+
+		setUsers((prevState) => [newUser, ...prevState]);
+
+		setShowCreate(false);
+	};
+
+	const userInfoClickHandler = async (userId) => {
+		const userDetails = await userService.getOne(userId);
+		console.log(userDetails);
+	};
+
 	return (
 		<div className="table-wrapper">
-			{showCreate && <CreateUserModal hideModal={hideCreateUserModal} />}
+			{showCreate && (
+				<CreateUserModal
+					hideModal={hideCreateUserModal}
+					onUserCreate={userCreateHandler}
+				/>
+			)}
+
+			{showInfo && <UserInfoModal onClose={() => setShowInfo(false)} />}
 			{/*     
         <!-- <div className="loading-shade"> -->
         <!-- Loading spinner  -->
@@ -192,11 +217,13 @@ export default function UserListTable() {
 					{users.map((user) => (
 						<UserListItem
 							key={user._id}
+							userId={user._id}
 							createdAt={user.createdAt}
 							email={user.email}
 							firstName={user.firstName}
 							imageUrl={user.imageUrl}
 							lastName={user.lastName}
+							onInfoClick={userInfoClickHandler}
 						/>
 					))}
 				</tbody>

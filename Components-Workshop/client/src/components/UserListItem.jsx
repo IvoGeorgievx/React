@@ -1,11 +1,16 @@
 export default function UserListItem({
+	userId,
 	firstName,
 	lastName,
 	email,
 	phoneNumber,
 	createdAt,
 	imageUrl,
+	onInfoClick,
 }) {
+	function infoClickHandler() {
+		onInfoClick(userId);
+	}
 	return (
 		<tr>
 			<td>
@@ -52,7 +57,11 @@ export default function UserListItem({
 						></path>
 					</svg>
 				</button>
-				<button className="btn info-btn" title="Info">
+				<button
+					className="btn info-btn"
+					title="Info"
+					onClick={infoClickHandler}
+				>
 					<svg
 						aria-hidden="true"
 						focusable="false"

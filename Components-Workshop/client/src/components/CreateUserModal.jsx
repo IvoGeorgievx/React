@@ -1,4 +1,4 @@
-export default function CreateUserModal({ hideModal }) {
+export default function CreateUserModal({ hideModal, onUserCreate }) {
 	return (
 		<div className="overlay">
 			<div className="backdrop" onClick={hideModal}></div>
@@ -24,7 +24,7 @@ export default function CreateUserModal({ hideModal }) {
 							</svg>
 						</button>
 					</header>
-					<form>
+					<form onSubmit={onUserCreate}>
 						<div className="form-row">
 							<div className="form-group">
 								<label htmlFor="firstName">First name</label>
