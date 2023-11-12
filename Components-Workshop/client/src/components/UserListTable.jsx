@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import UserListItem from "./UserListItem";
 import * as userService from "../services/userService";
 import CreateUserModal from "./CreateUserModal";
+import UserInfoModal from "./UserInfoModal";
 
 export default function UserListTable() {
 	const [users, setUsers] = useState([]);
 	const [showCreate, setShowCreate] = useState(false);
 	const [showInfo, setShowInfo] = useState(false);
+	const [selectedUser, setSelectedUser] = useState(null);
+
 	useEffect(() => {
 		userService.getAll().then((res) => setUsers(res));
 	}, []);
@@ -32,8 +35,8 @@ export default function UserListTable() {
 	};
 
 	const userInfoClickHandler = async (userId) => {
-		const userDetails = await userService.getOne(userId);
-		console.log(userDetails);
+		setSelectedUser(userId);
+		setShowInfo(true);
 	};
 
 	return (
@@ -45,7 +48,12 @@ export default function UserListTable() {
 				/>
 			)}
 
-			{showInfo && <UserInfoModal onClose={() => setShowInfo(false)} />}
+			{showInfo && (
+				<UserInfoModal
+					onClose={() => setShowInfo(false)}
+					userId={selectedUser}
+				/>
+			)}
 			{/*     
         <!-- <div className="loading-shade"> -->
         <!-- Loading spinner  -->

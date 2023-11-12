@@ -1,4 +1,13 @@
-export default function UserInfoModal({ onClose }) {
+import { useEffect, useState } from "react";
+
+import * as userService from "../services/userService";
+
+export default function UserInfoModal({ onClose, userId }) {
+	const [userDetails, setUserDetails] = useState({});
+
+	useEffect(() => {
+		userService.getOne(userId).then((res) => setUserDetails(res));
+	}, [userId]);
 	return (
 		<div className="overlay">
 			<div className="backdrop" onClick={onClose}></div>
@@ -27,35 +36,43 @@ export default function UserInfoModal({ onClose }) {
 					<div className="content">
 						<div className="image-container">
 							<img
-								src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-								alt=""
+								src={userDetails.imageURL}
+								alt={userDetails.firstName}
 								className="image"
 							/>
 						</div>
 						<div className="user-details">
 							<p>
-								User Id: <strong>62bb0c0eda039e2fdccba57b</strong>
+								User Id: <strong>{userDetails._id}</strong>
 							</p>
 							<p>
 								Full Name:
-								<strong> Peter Johnson </strong>
+								<strong>
+									{" "}
+									{userDetails.firstName} {userDetails.lastName}{" "}
+								</strong>
 							</p>
 							<p>
-								Email: <strong>peter@abv.bg</strong>
+								Email: <strong>{userDetails.email}</strong>
 							</p>
 							<p>
-								Phone Number: <strong>0812345678</strong>
+								Phone Number: <strong>{userDetails.phoneNumber}</strong>
 							</p>
 							<p>
 								Address:
-								<strong> Bulgaria, Sofia, Aleksandar Malinov 78 </strong>
+								<strong>
+									{" "}
+									{userDetails.address?.country}, {userDetails.address?.city},{" "}
+									{userDetails.address?.street}{" "}
+									{userDetails.address?.streetNumber}{" "}
+								</strong>
 							</p>
 
 							<p>
-								Created on: <strong>Wednesday, June 28, 2022</strong>
+								Created on: <strong>{userDetails.createdAt}</strong>
 							</p>
 							<p>
-								Modified on: <strong>Thursday, June 29, 2022</strong>
+								Modified on: <strong>{userDetails.updatedAt}</strong>
 							</p>
 						</div>
 					</div>
