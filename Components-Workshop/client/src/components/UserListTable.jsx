@@ -3,11 +3,13 @@ import UserListItem from "./UserListItem";
 import * as userService from "../services/userService";
 import CreateUserModal from "./CreateUserModal";
 import UserInfoModal from "./UserInfoModal";
+import UserDeleteModal from "./UserDeleteModal";
 
 export default function UserListTable() {
 	const [users, setUsers] = useState([]);
 	const [showCreate, setShowCreate] = useState(false);
 	const [showInfo, setShowInfo] = useState(false);
+	const [showDelete, setShowDelete] = useState(false);
 	const [selectedUser, setSelectedUser] = useState(null);
 
 	useEffect(() => {
@@ -39,6 +41,19 @@ export default function UserListTable() {
 		setShowInfo(true);
 	};
 
+	const deleteUserClickHandler = async (userId) => {
+		setSelectedUser(userId);
+		setShowDelete(true);
+	};
+
+	const deleteUserHandler = async () => {
+		const result = await userService.remove(selectedUser);
+		setUsers((prevState) =>
+			prevState.filter((user) => user._id !== selectedUser)
+		);
+		setShowDelete(false);
+	};
+
 	return (
 		<div className="table-wrapper">
 			{showCreate && (
@@ -52,6 +67,13 @@ export default function UserListTable() {
 				<UserInfoModal
 					onClose={() => setShowInfo(false)}
 					userId={selectedUser}
+				/>
+			)}
+
+			{showDelete && (
+				<UserDeleteModal
+					onClose={() => setShowDelete(false)}
+					onDelete={deleteUserHandler}
 				/>
 			)}
 			{/*     
@@ -232,6 +254,7 @@ export default function UserListTable() {
 							imageUrl={user.imageUrl}
 							lastName={user.lastName}
 							onInfoClick={userInfoClickHandler}
+							onDeleteClick={deleteUserClickHandler}
 						/>
 					))}
 				</tbody>
