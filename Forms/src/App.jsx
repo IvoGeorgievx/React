@@ -1,10 +1,10 @@
 import "./App.css";
-import UncontrolledForm from "../components/UncontrolledForm.jsx";
+import ControlledForm from "../components/ControlledForm";
 
 function App() {
 	return (
 		<>
-			<UncontrolledForm />
+			<ControlledForm />
 		</>
 	);
 }
