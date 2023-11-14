@@ -2,9 +2,14 @@ import { useState } from "react";
 
 export default function ControlledForm() {
 	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 
 	const usernameChangeHandler = (e) => {
 		setUsername(e.target.value);
+	};
+
+	const passwordChangeHandler = (e) => {
+		setPassword(e.target.value);
 	};
 	return (
 		<>
@@ -23,7 +28,13 @@ export default function ControlledForm() {
 				</div>
 				<div>
 					<label htmlFor="password">Password</label>
-					<input type="password" id="password" name="password" />
+					<input
+						type="password"
+						id="password"
+						name="password"
+						value={username}
+						onChange={passwordChangeHandler}
+					/>
 				</div>
 				<div>
 					<input type="submit" value="Register" />
