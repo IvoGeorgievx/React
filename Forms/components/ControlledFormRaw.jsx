@@ -1,21 +1,20 @@
 import { useState } from "react";
 
-export default function ControlledFormRaw() {
-	const [formState, setFormState] = useState({
-		username: "",
-		password: "",
-	});
+export default function ControlledForm() {
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 
-	const changeHandler = (e) => {
-		setFormState({
-			...formState,
-			[e.target.name]: e.target.value,
-		});
+	const usernameChangeHandler = (e) => {
+		setUsername(e.target.value);
+	};
+
+	const passwordChangeHandler = (e) => {
+		setPassword(e.target.value);
 	};
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		console.log(formState.username, formState.password);
+		console.log(username, password);
 	};
 
 	return (
@@ -29,8 +28,8 @@ export default function ControlledFormRaw() {
 						type="text"
 						id="username"
 						name="username"
-						value={formState.username}
-						onChange={changeHandler}
+						value={username}
+						onChange={usernameChangeHandler}
 					/>
 				</div>
 				<div>
@@ -39,8 +38,8 @@ export default function ControlledFormRaw() {
 						type="password"
 						id="password"
 						name="password"
-						value={formState.password}
-						onChange={changeHandler}
+						value={password}
+						onChange={passwordChangeHandler}
 					/>
 				</div>
 				<div>
