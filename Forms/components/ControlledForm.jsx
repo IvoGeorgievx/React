@@ -1,10 +1,13 @@
 import { useState } from "react";
+import styles from "./ControlledForm.module.css";
 
 export default function ControlledFormRaw() {
 	const [formState, setFormState] = useState({
 		username: "",
 		password: "",
 	});
+
+	const [usernameError, setUsernameError] = useState("");
 
 	const changeHandler = (e) => {
 		setFormState({
@@ -16,6 +19,15 @@ export default function ControlledFormRaw() {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		console.log(formState.username, formState.password);
+	};
+
+	const validateUsername = () => {
+		console.log(formState.username.length);
+		if (formState.username.length < 6) {
+			setUsernameError("Username must be at least 6 characters");
+		} else {
+			setUsernameError("");
+		}
 	};
 
 	return (
@@ -31,7 +43,9 @@ export default function ControlledFormRaw() {
 						name="username"
 						value={formState.username}
 						onChange={changeHandler}
+						onBlur={validateUsername}
 					/>
+					{usernameError && <p className={styles.error}>{usernameError}</p>}
 				</div>
 				<div>
 					<label htmlFor="password">Password</label>
