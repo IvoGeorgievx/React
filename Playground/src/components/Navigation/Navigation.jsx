@@ -16,6 +16,9 @@ export default function Navigation() {
 					<li>
 						<Link to="/contacts">Contacts</Link>
 					</li>
+					<li>
+						<Link to="/movies">Movies</Link>
+					</li>
 				</ul>
 				<NavAuth />
 			</nav>
