@@ -1,0 +1,23 @@
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+}
+
+.main-nav {
+	width: 50%;
+	display: flex;
+	justify-content: flex-start;
+	gap: 1rem;
+}
+
+.main-nav li {
+	display: inline-block;
+}
+
+.main-nav a {
+	text-decoration: none;
+	font-size: 1.5rem;
+	list-style: none;
+}
