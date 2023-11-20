@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./NavAuth.module.css";
 
 export default function NavAuth() {
@@ -8,7 +9,7 @@ export default function NavAuth() {
 					<a href="/login">Login</a>
 				</li>
 				<li>
-					<a href="/register">Register</a>
+					<Link to="/register">Register</Link>
 				</li>
 			</ul>
 		</>

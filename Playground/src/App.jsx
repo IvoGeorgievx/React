@@ -4,6 +4,7 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Contacts from "./components/Contacts/Contacts";
 import Movies from "./components/Movies";
+import Register from "./components/Register";
 
 export default function App() {
 	return (
@@ -14,6 +15,7 @@ export default function App() {
 				<Route path="/about" element={<About />} />
 				<Route path="/contacts" element={<Contacts />} />
 				<Route path="/movies" element={<Movies />} />
+				<Route path="/register" element={<Register />} />
 			</Routes>
 		</>
 	);
