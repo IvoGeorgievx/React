@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./Register.module.css";
-import { REGISTER_URL } from "../api/urls";
+import { REGISTER_URL } from "../../api/urls";
 
 export default function Register() {
 	const [formState, setFormState] = useState({
@@ -10,6 +10,15 @@ export default function Register() {
 		last_name: "",
 		email: "",
 	});
+	const [usernameError, setUsernameError] = useState("");
+
+	const checkUsernameValidity = () => {
+		if (formState.username.length < 5) {
+			setUsernameError("Username must be atleast 5 characters long.");
+		} else {
+			setUsernameError("");
+		}
+	};
 
 	const registerHandler = async (e) => {
 		e.preventDefault();
@@ -23,15 +32,6 @@ export default function Register() {
 				},
 				body: body,
 			});
-
-			// You can handle the response here, e.g., check response status
-			if (response.ok) {
-				// Registration successful, handle accordingly
-				console.log("Registration successful");
-			} else {
-				// Registration failed, handle accordingly
-				console.error("Registration failed");
-			}
 		} catch (error) {
 			console.error("Error during registration:", error);
 		}
@@ -56,7 +56,9 @@ export default function Register() {
 					name="username"
 					value={formState.username}
 					onChange={changeHandler}
+					onBlur={checkUsernameValidity}
 				/>
+				{usernameError && <p className={styles.error}>{usernameError}</p>}
 				<label htmlFor="password">Password</label>
 				<input
 					type="password"

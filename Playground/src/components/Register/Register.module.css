@@ -6,3 +6,9 @@
 	gap: 10px;
 	height: 80vh;
 }
+
+.error {
+	color: red;
+	font-size: 10px;
+	margin-top: 5px;
+}

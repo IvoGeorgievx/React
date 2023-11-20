@@ -4,7 +4,7 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Contacts from "./components/Contacts/Contacts";
 import Movies from "./components/Movies";
-import Register from "./components/Register";
+import Register from "./components/Register/Register";
 
 export default function App() {
 	return (
