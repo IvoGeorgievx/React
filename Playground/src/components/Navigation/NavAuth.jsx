@@ -6,7 +6,7 @@ export default function NavAuth() {
 		<>
 			<ul className={styles["auth-nav"]}>
 				<li>
-					<a href="/login">Login</a>
+					<Link to="/login">Login</Link>
 				</li>
 				<li>
 					<Link to="/register">Register</Link>

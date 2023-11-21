@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./Register.module.css";
 import { REGISTER_URL } from "../../api/urls";
+import MainButton from "../Reusables/MainButton";
 
 export default function Register() {
 	const [formState, setFormState] = useState({
@@ -91,7 +92,7 @@ export default function Register() {
 					value={formState.email}
 					onChange={changeHandler}
 				/>
-				<input type="submit" value="Register" />
+				<MainButton name={"Register"} type={"submit"} />
 			</form>
 		</>
 	);

@@ -5,6 +5,7 @@ import About from "./components/About/About";
 import Contacts from "./components/Contacts/Contacts";
 import Movies from "./components/Movies";
 import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
 
 export default function App() {
 	return (
@@ -16,6 +17,7 @@ export default function App() {
 				<Route path="/contacts" element={<Contacts />} />
 				<Route path="/movies" element={<Movies />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/login" element={<Login />} />
 			</Routes>
 		</>
 	);
