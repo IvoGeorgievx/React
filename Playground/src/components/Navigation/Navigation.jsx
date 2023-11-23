@@ -23,7 +23,7 @@ export default function Navigation() {
 					<li>
 						<Link to="/movies">Movies</Link>
 					</li>
-					{!username && <NavAuth />}
+					{!username ? <NavAuth /> : <li>{username}</li>}
 				</ul>
 			</nav>
 		</>
