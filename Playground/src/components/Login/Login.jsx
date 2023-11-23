@@ -1,34 +1,13 @@
 import { useState } from "react";
 import styles from "./Login.module.css";
 import MainButton from "../Reusables/MainButton";
-import { LOGIN_URL } from "../../api/urls";
-import * as authService from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
 	const [formState, setFormState] = useState({
 		username: "",
 		password: "",
 	});
-
-	const [auth, setAuth] = useState({});
-	// CONTINUE
-
-	const loginHandler = (e) => {
-		e.preventDefault();
-		authService.login(formState.username, formState.password);
-		// fetch(LOGIN_URL, {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify(formState),
-		// })
-		// 	.then((response) => response.json())
-		// 	.then((data) => {
-		// 		console.log(data);
-		// 	})
-		// 	.catch((error) => console.log(error));
-	};
 
 	const loginChangeHandler = (e) => {
 		setFormState({
@@ -37,9 +16,14 @@ export default function Login() {
 		});
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		props.loginHandler(formState);
+	};
+
 	return (
 		<>
-			<form className={styles["form-grp"]} onSubmit={loginHandler}>
+			<form className={styles["form-grp"]} onSubmit={handleSubmit}>
 				<label htmlFor="username">Username</label>
 				<input
 					type="text"

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import NavAuth from "./NavAuth";
-import { useState } from "react";
-import * as authService from "../services/authService";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/authContext";
 
 export default function Navigation() {
-	const [auth, setAuth] = useState({});
+	const { username } = useContext(AuthContext);
 
 	return (
 		<>
@@ -23,6 +23,7 @@ export default function Navigation() {
 					<li>
 						<Link to="/movies">Movies</Link>
 					</li>
+					{!username && <NavAuth />}
 				</ul>
 			</nav>
 		</>
