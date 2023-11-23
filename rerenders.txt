@@ -1,0 +1,4 @@
+1. initial render
+2. parent rerender
+3. props changed
+4. state changed (customHook state changed)

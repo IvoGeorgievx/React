@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import NavAuth from "./NavAuth";
+import { useState } from "react";
+import * as authService from "../services/authService";
 
 export default function Navigation() {
+	const [auth, setAuth] = useState({});
+
 	return (
 		<>
 			<nav>
@@ -20,7 +24,6 @@ export default function Navigation() {
 						<Link to="/movies">Movies</Link>
 					</li>
 				</ul>
-				<NavAuth />
 			</nav>
 		</>
 	);
