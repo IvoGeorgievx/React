@@ -26,10 +26,8 @@ export default function App() {
 				console.log(token);
 				console.log(formState);
 			}
-			// If token is null, login failed and you can handle it accordingly
 		} catch (error) {
 			console.error("Login handler error:", error);
-			// Handle other errors if needed
 		}
 	};
 
