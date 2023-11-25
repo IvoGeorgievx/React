@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import NavAuth from "./NavAuth";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../contexts/authContext";
 
 export default function Navigation() {
-	const { username } = useContext(AuthContext);
-
 	return (
 		<>
 			<nav>
@@ -23,7 +19,7 @@ export default function Navigation() {
 					<li>
 						<Link to="/movies">Movies</Link>
 					</li>
-					{!username ? <NavAuth /> : <li>{username}</li>}
+					<NavAuth />
 				</ul>
 			</nav>
 		</>
