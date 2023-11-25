@@ -10,17 +10,17 @@ import { AuthContext } from "./contexts/authContext";
 import { useState } from "react";
 import login from "./services/authService";
 import Path from "./paths";
+import Logout from "./components/Logout/Logout";
 
 export default function App() {
 	const [auth, setAuth] = useState({});
-	const [token, setToken] = useState("");
 	const navigate = useNavigate();
 	const loginHandler = async (formState) => {
 		try {
 			const token = await login(formState.username, formState.password);
 
 			if (token) {
-				setToken(token);
+				localStorage.setItem("token", token);
 				navigate(Path.Home);
 				setAuth(formState);
 				console.log(token);
@@ -33,7 +33,7 @@ export default function App() {
 
 	const values = {
 		username: auth.username,
-		token: token,
+		setAuth: setAuth,
 	};
 	return (
 		<>
@@ -51,6 +51,7 @@ export default function App() {
 						path="/login"
 						element={<Login loginHandler={loginHandler} />}
 					/>
+					<Route path="/logout" element={<Logout />} />
 				</Routes>
 			</AuthContext.Provider>
 		</>
