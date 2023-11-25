@@ -13,16 +13,29 @@ import Path from "./paths";
 
 export default function App() {
 	const [auth, setAuth] = useState({});
+	const [token, setToken] = useState("");
 	const navigate = useNavigate();
-	const loginHandler = (formState) => {
-		console.log(formState);
-		login(formState.username, formState.password);
-		navigate(Path.Home);
-		setAuth(formState);
+	const loginHandler = async (formState) => {
+		try {
+			const token = await login(formState.username, formState.password);
+
+			if (token) {
+				setToken(token);
+				navigate(Path.Home);
+				setAuth(formState);
+				console.log(token);
+				console.log(formState);
+			}
+			// If token is null, login failed and you can handle it accordingly
+		} catch (error) {
+			console.error("Login handler error:", error);
+			// Handle other errors if needed
+		}
 	};
 
 	const values = {
 		username: auth.username,
+		token: token,
 	};
 	return (
 		<>
