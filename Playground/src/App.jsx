@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import login from "./services/authService";
 import Path from "./paths";
 import Logout from "./components/Logout/Logout";
+import MyTickets from "./components/MyTickets/MyTickets";
 
 export default function App() {
 	let storedToken = localStorage.getItem("token");
@@ -66,6 +67,7 @@ export default function App() {
 						element={<Login loginHandler={loginHandler} />}
 					/>
 					<Route path="/logout" element={<Logout />} />
+					<Route path="/my-tickets" element={<MyTickets />} />
 				</Routes>
 			</AuthContext.Provider>
 		</>

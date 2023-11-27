@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { ALL_MOVIES_URL } from "../api/urls";
 import { AuthContext } from "../contexts/authContext";
-import purchaseTicket from "../services/purchaseService";
+import { purchaseTicket } from "../services/purchaseService";
 import MainButton from "./Reusables/MainButton";
 
 export default function Movies() {

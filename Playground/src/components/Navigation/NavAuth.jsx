@@ -24,6 +24,9 @@ export default function NavAuth() {
 							<Link to="#">Hello, {username}</Link>
 						</li>
 						<li>
+							<Link to="/my-tickets">My Tickets</Link>
+						</li>
+						<li>
 							<Link to="/logout">
 								<Logout />
 							</Link>
