@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ALL_MOVIES_URL } from "../api/urls";
+import { AuthContext } from "../contexts/authContext";
+import purchaseTicket from "../services/purchaseService";
+import MainButton from "./Reusables/MainButton";
 
 export default function Movies() {
 	const [movies, setMovies] = useState([]);
+	const { username, auth } = useContext(AuthContext);
 	useEffect(() => {
 		fetchMovies();
 	}, []);
@@ -15,13 +19,20 @@ export default function Movies() {
 			});
 	};
 
+	const purchaseHandler = (movieId) => {
+		purchaseTicket(movieId);
+	};
+
 	return (
 		<>
 			<h1>Here to fetch the movies from the DB</h1>
 			<ul>
 				{movies.map((movie) => (
-					<li key={movie.id}>{movie.name}</li>
+					<li key={movie.id} onClick={() => purchaseHandler(movie.id)}>
+						{movie.name} <MainButton type="submit" name="Purchase Ticket" />
+					</li>
 				))}
+				{username ? <li>{username}</li> : <li>nothing bruv</li>}
 			</ul>
 		</>
 	);

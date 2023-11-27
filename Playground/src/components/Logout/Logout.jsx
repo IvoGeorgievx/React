@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import Path from "../../paths";
@@ -11,6 +11,7 @@ export default function Logout() {
 		navigate(Path.Home);
 		setAuth("");
 	};
+
 	return (
 		<>
 			<p onClick={logoutHandler}>Logout</p>

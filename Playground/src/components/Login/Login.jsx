@@ -1,12 +1,12 @@
 import { useState } from "react";
 import styles from "./Login.module.css";
 import MainButton from "../Reusables/MainButton";
-import { useNavigate } from "react-router-dom";
 
 export default function Login(props) {
 	const [formState, setFormState] = useState({
 		username: "",
 		password: "",
+		isAuthenticated: false,
 	});
 
 	const loginChangeHandler = (e) => {

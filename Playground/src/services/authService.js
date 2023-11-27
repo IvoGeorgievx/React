@@ -17,7 +17,6 @@ export default async function login(username, password) {
 			return null;
 		}
 	} catch (error) {
-		console.log(`Error: ${error}`);
 		return null; // or throw an error
 	}
 }

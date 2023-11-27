@@ -7,14 +7,22 @@ import Movies from "./components/Movies";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import { AuthContext } from "./contexts/authContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import login from "./services/authService";
 import Path from "./paths";
 import Logout from "./components/Logout/Logout";
 
 export default function App() {
+	let storedToken = localStorage.getItem("token");
+	console.log(storedToken);
 	const [auth, setAuth] = useState({});
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (storedToken) {
+			setAuth({ isAuthenticated: true });
+		}
+	}, []);
 	const loginHandler = async (formState) => {
 		try {
 			const token = await login(formState.username, formState.password);
@@ -22,7 +30,12 @@ export default function App() {
 			if (token) {
 				localStorage.setItem("token", token);
 				navigate(Path.Home);
-				setAuth(formState);
+				setAuth((prevState) => ({
+					...prevState,
+					isAuthenticated: true,
+					username: formState.username,
+				}));
+
 				console.log(token);
 				console.log(formState);
 			}
@@ -34,6 +47,7 @@ export default function App() {
 	const values = {
 		username: auth.username,
 		setAuth: setAuth,
+		auth: auth,
 	};
 	return (
 		<>
