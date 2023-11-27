@@ -9,8 +9,7 @@ export default function purchaseTicket(movieId) {
 			Authorization: `Bearer ${token}`,
 		},
 		body: JSON.stringify({ movie_id: movieId }),
-	})
-		.then((response) => response.json())
-		.then((data) => console.log(data));
-	console.log(result, token);
+	}).then((result) => result.json());
+
+	return result;
 }

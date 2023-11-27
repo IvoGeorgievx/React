@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import Spinner from "react-bootstrap/Spinner";
 import { ALL_MOVIES_URL } from "../api/urls";
 import { AuthContext } from "../contexts/authContext";
 import purchaseTicket from "../services/purchaseService";
@@ -6,6 +7,7 @@ import MainButton from "./Reusables/MainButton";
 
 export default function Movies() {
 	const [movies, setMovies] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const { username, auth } = useContext(AuthContext);
 	useEffect(() => {
 		fetchMovies();
@@ -20,7 +22,8 @@ export default function Movies() {
 	};
 
 	const purchaseHandler = (movieId) => {
-		purchaseTicket(movieId);
+		setLoading(true);
+		purchaseTicket(movieId).then(() => setLoading(false));
 	};
 
 	return (
@@ -34,6 +37,7 @@ export default function Movies() {
 				))}
 				{username ? <li>{username}</li> : <li>nothing bruv</li>}
 			</ul>
+			{loading && <Spinner animation="border" />}
 		</>
 	);
 }
