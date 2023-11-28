@@ -11,6 +11,7 @@ export default function Movies() {
 	const { username, auth } = useContext(AuthContext);
 	useEffect(() => {
 		fetchMovies();
+		console.log(auth);
 	}, []);
 
 	const fetchMovies = () => {

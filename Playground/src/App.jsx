@@ -8,48 +8,56 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import { AuthContext } from "./contexts/authContext";
 import { useEffect, useState } from "react";
-import login from "./services/authService";
+import { login, getUser } from "./services/authService";
 import Path from "./paths";
 import Logout from "./components/Logout/Logout";
 import MyTickets from "./components/MyTickets/MyTickets";
 
 export default function App() {
 	let storedToken = localStorage.getItem("token");
-	console.log(storedToken);
+	// console.log(storedToken);
 	const [auth, setAuth] = useState({});
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (storedToken) {
-			setAuth({ isAuthenticated: true });
+			const currentUser = async () => {
+				const response = await getUser(storedToken);
+				const userResponse = await response.json();
+				const user = userResponse.user;
+				setAuth(user);
+				console.log(user);
+			};
+
+			setAuth(currentUser);
 		}
 	}, []);
+	// console.log(currentUser, auth);
 	const loginHandler = async (formState) => {
 		try {
-			const [token, user] = await login(formState.username, formState.password);
-			console.log(token, user);
+			const token = await login(formState.username, formState.password);
+			// console.log(token, user);
 
 			if (token) {
 				localStorage.setItem("token", token);
 				navigate(Path.Home);
-				setAuth((prevState) => ({
-					...prevState,
-					isAuthenticated: true,
-					username: formState.username,
-				}));
-
-				console.log(formState);
+				// setAuth((prevState) => ({
+				// 	...prevState,
+				// 	isAuthenticated: true,
+				// 	username: formState.username,
+				// }));
+				// setAuth(user);
 			}
 		} catch (error) {
 			console.error("Login handler error:", error);
 		}
 	};
-
 	const values = {
 		username: auth.username,
-		setAuth: setAuth,
 		auth: auth,
+		setAuth: setAuth,
 	};
+
 	return (
 		<>
 			<AuthContext.Provider value={values}>

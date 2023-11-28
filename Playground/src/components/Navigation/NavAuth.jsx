@@ -5,11 +5,11 @@ import { AuthContext } from "../../contexts/authContext";
 import Logout from "../Logout/Logout";
 
 export default function NavAuth() {
-	const { username } = useContext(AuthContext);
+	const { auth } = useContext(AuthContext);
 	return (
 		<>
 			<ul className={styles["auth-nav"]}>
-				{!username ? (
+				{!auth.username ? (
 					<>
 						<li>
 							<Link to="/login">Login</Link>
@@ -21,7 +21,7 @@ export default function NavAuth() {
 				) : (
 					<>
 						<li>
-							<Link to="#">Hello, {username}</Link>
+							<Link to="#">Hello, {auth.username}</Link>
 						</li>
 						<li>
 							<Link to="/my-tickets">My Tickets</Link>
