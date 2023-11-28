@@ -21,9 +21,8 @@ export function getAllTickets() {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
-	})
-		.then((result) => result.json())
-		.then((data) => console.log(data));
+	}).then((result) => result.json());
+	// .then((data) => console.log(data));
 
 	return data;
 }

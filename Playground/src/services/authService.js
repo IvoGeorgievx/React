@@ -11,7 +11,7 @@ export default async function login(username, password) {
 
 		if (response.status === 200) {
 			const data = await response.json();
-			return data.token;
+			return [data.token, data.user];
 		} else {
 			console.log("Login failed. Status:", response.status);
 			return null;

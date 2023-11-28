@@ -26,7 +26,8 @@ export default function App() {
 	}, []);
 	const loginHandler = async (formState) => {
 		try {
-			const token = await login(formState.username, formState.password);
+			const [token, user] = await login(formState.username, formState.password);
+			console.log(token, user);
 
 			if (token) {
 				localStorage.setItem("token", token);
@@ -37,7 +38,6 @@ export default function App() {
 					username: formState.username,
 				}));
 
-				console.log(token);
 				console.log(formState);
 			}
 		} catch (error) {
