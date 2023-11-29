@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./NavAuth.module.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import Logout from "../Logout/Logout";
 
 export default function NavAuth() {
 	const { auth } = useContext(AuthContext);
+
 	return (
 		<>
 			<ul className={styles["auth-nav"]}>

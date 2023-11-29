@@ -31,7 +31,7 @@ export default function App() {
 
 			setAuth(currentUser);
 		}
-	}, []);
+	}, [storedToken]);
 	// console.log(currentUser, auth);
 	const loginHandler = async (formState) => {
 		try {
