@@ -4,7 +4,6 @@ import { RightSquareOutlined, LeftSquareOutlined } from "@ant-design/icons";
 
 import styles from "./Header.module.css";
 import Navigation from "./Navigation";
-import DrawerModal from "../Modals/DrawerModal";
 
 export default function Header() {
 	const [shown, setShown] = useState(false);
@@ -31,7 +30,6 @@ export default function Header() {
 				)}
 				<Navigation />
 			</div>
-			<DrawerModal />
 		</>
 	);
 }

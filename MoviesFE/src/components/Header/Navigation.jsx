@@ -11,7 +11,7 @@ export default function Navigation() {
 				</li>
 				<li>
 					{" "}
-					<Link to="/">Home</Link>
+					<Link to="/upcoming-movies">Upcoming Movies</Link>
 				</li>
 				<li>
 					{" "}
