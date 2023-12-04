@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from "./UpcomingMovies.module.css";
+
 import { getUpcomingMovies } from "../../services/movieService";
+import styles from "./UpcomingMovies.module.css";
 import DefaultCard from "../Reusables/DefaultCard";
+import LoadingSpinner from "../Reusables/LoadingSpinner";
 
 export default function UpcomingMovies() {
 	const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -17,9 +19,9 @@ export default function UpcomingMovies() {
 
 	return (
 		<>
-			<ul>
+			<ul className={styles["movie-list"]}>
 				{loading ? (
-					<h1>LOADING</h1>
+					<LoadingSpinner />
 				) : (
 					upcomingMovies.map((movie) => (
 						<li key={movie.id}>
