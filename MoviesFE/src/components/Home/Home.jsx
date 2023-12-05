@@ -17,11 +17,6 @@ export default function Home() {
 					src="/images/gladiator.png"
 					alt="movie"
 				/>
-				{/* <img
-					className={styles["poster-rocky"]}
-					src="/images/rocky.webp"
-					alt="movie"
-				/> */}
 				<img
 					className={styles["poster-interstellar"]}
 					src="/images/interstellar.jpg"
