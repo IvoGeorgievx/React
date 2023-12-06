@@ -15,15 +15,15 @@ export default function Navigation() {
 				</li>
 				<li>
 					{" "}
-					<Link to="/">Home</Link>
+					<Link to="/">Coming soon to our cinema.</Link>
 				</li>
 				<li>
 					{" "}
-					<Link to="/">Home</Link>
+					<Link to="/">Login</Link>
 				</li>
 				<li>
 					{" "}
-					<Link to="/">Home</Link>
+					<Link to="/register">Register</Link>
 				</li>
 			</ul>
 		</nav>
