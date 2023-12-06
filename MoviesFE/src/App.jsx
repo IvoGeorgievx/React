@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import UpcomingMovies from "./components/UpcomingMovies/UpcomingMovies";
 import Register from "./components/Register/Register";
+import SearchMovies from "./components/SearchMovies/SearchMovies";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/upcoming-movies" element={<UpcomingMovies />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/search-movie" element={<SearchMovies />} />
 			</Routes>
 		</>
 	);

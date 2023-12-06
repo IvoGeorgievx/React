@@ -15,7 +15,7 @@ export default function Navigation() {
 				</li>
 				<li>
 					{" "}
-					<Link to="/">Coming soon to our cinema.</Link>
+					<Link to="/search-movie">Search for a Movie</Link>
 				</li>
 				<li>
 					{" "}
