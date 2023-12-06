@@ -9,7 +9,8 @@ export async function register(body) {
 			},
 			body: body,
 		});
+		return response;
 	} catch (error) {
-		console.log(error);
+		return response;
 	}
 }

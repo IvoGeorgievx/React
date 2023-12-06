@@ -17,13 +17,23 @@ export default function Register() {
 		email: "",
 	});
 
-	const [usernameError, setUsernameError] = useState("");
+	const [fieldErrors, setFieldErrors] = useState({
+		username: "",
+		password: "",
+		first_name: "",
+		last_name: "",
+		email: "",
+	});
 
 	const changeHandler = (e) => {
 		setFormState({
 			...formState,
 			[e.target.name]: e.target.value,
 		});
+		// setFieldErrors({
+		// 	...fieldErrors,
+		// 	[e.target.name]: "",
+		// });
 	};
 
 	const checkUsernameValidity = () => {
@@ -33,9 +43,35 @@ export default function Register() {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		const body = JSON.stringify(formState);
-		register(body);
-		navigate(Path.Home);
+		const response = await register(body);
+		const data = await response.json();
+		if (response.status === 400) {
+			setFieldErrors({
+				username: data.message.username ? data.message.username.join(", ") : "",
+				password: data.message.password ? data.message.password.join(", ") : "",
+				first_name: data.message.first_name
+					? data.message.first_name.join(", ")
+					: "",
+				last_name: data.message.last_name
+					? data.message.last_name.join(", ")
+					: "",
+				email: data.message.email ? data.message.email.join(", ") : "",
+			});
+		} else {
+			setFieldErrors({
+				username: "",
+				password: "",
+				first_name: "",
+				last_name: "",
+				email: "",
+			});
+
+			navigate(Path.Home);
+		}
+
+		// console.log(data.message);
 	};
+	// console.log(fieldErrors);
 
 	return (
 		<div className={styles["reg-div"]}>
@@ -65,6 +101,9 @@ export default function Register() {
 					name="email"
 					onChange={changeHandler}
 				/>
+				{fieldErrors.email && (
+					<p className={styles["error-fields"]}>{fieldErrors.email}</p>
+				)}
 				<label htmlFor="first_name">First Name</label>
 				<input
 					type="text"
@@ -73,6 +112,9 @@ export default function Register() {
 					name="first_name"
 					onChange={changeHandler}
 				/>
+				{fieldErrors.first_name && (
+					<p className={styles["error-fields"]}>{fieldErrors.first_name}</p>
+				)}
 				<label htmlFor="last_name">Last Name</label>
 				<input
 					type="text"
@@ -81,6 +123,9 @@ export default function Register() {
 					name="last_name"
 					onChange={changeHandler}
 				/>
+				{fieldErrors.last_name && (
+					<p className={styles["error-fields"]}>{fieldErrors.last_name}</p>
+				)}
 				<input type="submit" value="Register" />
 			</form>
 		</div>

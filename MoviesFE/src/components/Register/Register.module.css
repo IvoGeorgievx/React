@@ -15,3 +15,7 @@
 .reg-form label {
 	color: white;
 }
+
+.error-fields {
+	color: red;
+}
