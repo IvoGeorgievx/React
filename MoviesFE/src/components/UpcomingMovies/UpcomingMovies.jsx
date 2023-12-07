@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { getUpcomingMovies } from "../../services/movieService";
 import styles from "./UpcomingMovies.module.css";
+import { getUpcomingMovies } from "../../services/movieService";
 import DefaultCard from "../Reusables/DefaultCard";
 import LoadingSpinner from "../Reusables/LoadingSpinner";
 

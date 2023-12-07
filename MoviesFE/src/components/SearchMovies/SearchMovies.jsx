@@ -22,6 +22,7 @@ export default function SearchMovies() {
 	};
 	console.log(movie);
 	return (
+		// TODO : VIDEOS FROM THE API AND ANT DESIGN TO PLAY THE VIDEO ---> IMAGES
 		<>
 			<div className={styles["search-movie-bar"]}>
 				<Search
