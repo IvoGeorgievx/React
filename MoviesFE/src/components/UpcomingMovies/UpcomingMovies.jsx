@@ -31,6 +31,7 @@ export default function UpcomingMovies() {
 								description={movie.overview}
 								releaseDate={movie.release_date}
 								imgUrl={movie.poster_path}
+								movieId={movie.id}
 							/>
 						</li>
 					))

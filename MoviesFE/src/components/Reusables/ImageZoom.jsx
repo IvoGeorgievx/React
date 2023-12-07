@@ -1,22 +1,17 @@
 import React from "react";
 import { Image } from "antd";
 
-export default function ImageZoom(props) {
+export default function ImageZoom({ image, trailerKey }) {
 	return (
 		<Image
 			// width={200}
 			preview={{
 				imageRender: () => (
-					<video
-						muted
-						width="50%"
-						controls
-						src="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*uYT7SZwhJnUAAAAAAAAAAAAADgCCAQ"
-					/>
+					<video width="40%" muted controls src={trailerKey} />
 				),
 				toolbarRender: () => null,
 			}}
-			src={props.image}
+			src={image}
 		/>
 	);
 }
