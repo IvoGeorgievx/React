@@ -32,14 +32,14 @@ export default function DefaultCard(props) {
 			);
 			const youtubeKey = filteredData[0].key;
 
-			// console.log(videoKey);
+			// console.log(youtubeKey);
 			setTrailerKey(youtubeKey);
 		};
 		getVideoId();
 	}, []);
 
 	// const trailerKey = getVideoId();
-	// console.log(trailerKey);
+	console.log(trailerKey);
 
 	return (
 		<Card
