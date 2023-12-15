@@ -54,7 +54,7 @@ export default function DefaultCard(props) {
 				// />
 				<ImageZoom
 					image={`https://image.tmdb.org/t/p/original${props.imgUrl}`}
-					trailerKey={`https://www.youtube.com/watch?v=${trailerKey}`}
+					trailerKey={trailerKey}
 				/>
 			}
 		>

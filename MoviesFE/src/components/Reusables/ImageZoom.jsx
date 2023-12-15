@@ -8,7 +8,7 @@ export default function ImageZoom({ image, trailerKey }) {
 				imageRender: () => (
 					<iframe
 						width="50%"
-						height="515"
+						height="900px"
 						src={`https://www.youtube.com/embed/${trailerKey}`}
 						frameBorder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
