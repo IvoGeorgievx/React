@@ -22,9 +22,7 @@ export default function SearchMovies() {
 	};
 	console.log(movie);
 	return (
-		// TODO : VIDEOS FROM THE API AND ANT DESIGN TO PLAY THE VIDEO ---> IMAGES
-		// ALSO GET VIDEO ID FROM TMDB
-		<>
+		<div className={styles["search-wrapper"]}>
 			<div className={styles["search-movie-bar"]}>
 				<Search
 					placeholder="Enter movie name..."
@@ -38,6 +36,6 @@ export default function SearchMovies() {
 				/>
 			</div>
 			{movie && <div>{movie.status}</div>}
-		</>
+		</div>
 	);
 }

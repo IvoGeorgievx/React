@@ -48,17 +48,16 @@ export default function DefaultCard(props) {
 				width: 420,
 			}}
 			cover={
-				// <img
-				// 	alt="moviepic"
-				// 	src={`https://image.tmdb.org/t/p/original${props.imgUrl}`}
-				// />
 				<ImageZoom
 					image={`https://image.tmdb.org/t/p/original${props.imgUrl}`}
 					trailerKey={trailerKey}
 				/>
 			}
 		>
-			<Meta title={props.title} description={props.description} />
+			<Meta title={props.title} style={{ textAlign: "center" }} />
+			<div style={{ maxHeight: "50px", overflow: "auto", margin: "20px 0" }}>
+				{props.description}
+			</div>
 			<p>Release date: {props.releaseDate}</p>
 		</Card>
 	);
