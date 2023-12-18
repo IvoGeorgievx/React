@@ -68,10 +68,7 @@ export default function Register() {
 
 			navigate(Path.Home);
 		}
-
-		// console.log(data.message);
 	};
-	// console.log(fieldErrors);
 
 	return (
 		<div className={styles["reg-div"]}>
